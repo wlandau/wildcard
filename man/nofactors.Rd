@@ -13,8 +13,11 @@ nofactors(df)
 Turn all the factors of a data frame into characters.
 }
 \examples{
+class(iris$Species)
 str(iris)
-str(nofactors(iris))
+out <- nofactors(iris)
+class(out$Species)
+str(out)
 }
 \seealso{
 \code{\link{wildcard}}

@@ -2,14 +2,6 @@
 
 context("wildcard")
 
-test_that("expand", {
-  df = data.frame(a = 1:2, b = 2:3, c = 4:5)
-  out = expand_rows(df, 3)
-  truth = data.frame(a = c(1,1,1,2,2,2), b = c(2,2,2,3,3,3),
-    c = c(4,4,4,5,5,5))
-  expect_equal(out, truth)
-})
-
 test_that("expanded df works", {
   df = data.frame(x = c(1, 2, "x", "x", 3), y = c("a", "b", "c", "x_y", "x_x"), stringsAsFactors = TRUE)
   out = wildcard(df, wildcard = "x", values = c(1111, 2222), expand = TRUE)

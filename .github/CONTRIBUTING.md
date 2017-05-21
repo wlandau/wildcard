@@ -1,0 +1,1 @@
+You can submit questions, bug reports, and feature requests to the [issue tracker](https://github.com/wlandau/wildcard/issues). Please take care to search for duplicates first, even among the closed issues.

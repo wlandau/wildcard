@@ -1,0 +1,49 @@
+---
+title: "Wildcards for data frames"
+author: "William Michael Landau"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{wildcard}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The wildcard package is a templating mechanism for data frames. Wildcards are placeholders for text, and you can evaluate them to generate new data frames from templates. The functionality is straightforward.
+
+## `wildcard()`
+
+```{r wildcard}
+library(wildcard)
+myths <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
+                    claim = c("various", "day", "day"), 
+                    note = c("various", "pictures", "reported day"))
+out = wildcard(myths, wildcard = "day", values = c("today", "yesterday"))
+wildcard(myths, wildcard = "day", values = c("today", "yesterday"), expand = FALSE)
+locations <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), origin = "where")
+rules <- list(where = c("North America", "various", "Scotland"), UFO = c("spaceship", "saucer"))
+wildcard(locations, rules = rules, expand = c(FALSE, TRUE))
+```
+
+## `expandrows()`
+
+```{r expandrows}
+df <- data.frame(ID = c("24601", "Javert", "Fantine"), 
+                 fate = c("fulfillment", "confusion", "misfortune"))
+expandrows(df, n = 2, type = "each")
+expandrows(df, n = 2, type = "times")
+```
+
+## `nofactors()`
+
+```{r nofactors}
+class(iris$Species)
+str(iris)
+out <- nofactors(iris)
+class(out$Species)
+str(out)
+```
+
+## Troubleshooting
+
+You can submit questions, bug reports, and feature requests to the [issue tracker](https://github.com/wlandau/wildcard/issues). Please take care to search for duplicates first, even among the closed issues.

@@ -35,7 +35,7 @@ wildcard = function(df, rules = NULL, wildcard = NULL, values = NULL,
   minor = unique_random_string(c(colnames(df), major))
   df[[major]] = df[[minor]] = seq_len(nrow(df))
   matching = df[matches,]
-  if(expand) matching = expand_rows(matching, n = length(values))
+  if(expand) matching = expandrows(matching, n = length(values))
   true_cols = setdiff(colnames(matching), c(major, minor))
   matching[,true_cols] = lapply(matching[,true_cols], gsub_multiple, pattern = wildcard, 
     replacement = values) %>% as.data.frame(stringsAsFactors = FALSE)
@@ -58,10 +58,11 @@ wildcard = function(df, rules = NULL, wildcard = NULL, values = NULL,
 #' @param type character scalar. If \code{"each"}, rows will be duplicated in place.
 #' If \code{"times"}, the data frame itself will be repeated \code{n} times
 #' @examples
-#' df <- head(mtcars)
-#' expand_rows(mtcars, n = 2, type = "each")
-#' expand_rows(mtcars, n = 2, type = "times")
-expand_rows = function(df, n = 2, type = c("each", "times")){
+#' df <- data.frame(ID = c("24601", "Javert", "Fantine"), 
+#'                  fate = c("fulfillment", "confusion", "misfortune"))
+#' expandrows(df, n = 2, type = "each")
+#' expandrows(df, n = 2, type = "times")
+expandrows = function(df, n = 2, type = c("each", "times")){
   if(n < 2) return(df)
   nrows = nrow(df)
   type = match.arg(type)
@@ -80,8 +81,11 @@ expand_rows = function(df, n = 2, type = c("each", "times")){
 #' @seealso \code{\link{wildcard}}
 #' @param df data frame
 #' @examples
+#' class(iris$Species)
 #' str(iris)
-#' str(nofactors(iris))
+#' out <- nofactors(iris)
+#' class(out$Species)
+#' str(out)
 nofactors = function(df){
   lapply(df, factor2character) %>%
     as.data.frame(stringsAsFactors = FALSE)
