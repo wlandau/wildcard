@@ -17,7 +17,7 @@
 #' myths <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
 #'                     claim = c("various", "day", "day"), 
 #'                     note = c("various", "pictures", "reported day"))
-#' out = wildcard(myths, wildcard = "day", values = c("today", "yesterday"))
+#' wildcard(myths, wildcard = "day", values = c("today", "yesterday"))
 #' wildcard(myths, wildcard = "day", values = c("today", "yesterday"), expand = FALSE)
 #' locations <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), origin = "where")
 #' rules <- list(where = c("North America", "various", "Scotland"), UFO = c("spaceship", "saucer"))
