@@ -1,5 +1,6 @@
 [![Travis-CI Build Status](https://travis-ci.org/wlandau/wildcard.svg?branch=master)](https://travis-ci.org/wlandau/wildcard)
 [![codecov.io](https://codecov.io/github/wlandau/wildcard/coverage.svg?branch=master)](https://codecov.io/github/wlandau/wildcard?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/wildcard)](http://cran.r-project.org/package=wildcard)
 
 # wildcard
 
