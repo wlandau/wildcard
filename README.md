@@ -2,4 +2,4 @@
 [![codecov.io](https://codecov.io/github/wlandau/wild/coverage.svg?branch=master)](https://codecov.io/github/wlandau/wildcard?branch=master)
 
 # wildcard
-Wildcards for data frames. Better than expand.grid() (when completed).
+Wildcards for data frames. Better than expand.grid().
