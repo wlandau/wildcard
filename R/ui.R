@@ -22,6 +22,8 @@
 #' locations <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), origin = "where")
 #' rules <- list(where = c("North America", "various", "Scotland"), UFO = c("spaceship", "saucer"))
 #' wildcard(locations, rules = rules, expand = c(FALSE, TRUE))
+#' numbers <- data.frame(x = 4, y = 3, z = 4444, w = 4.434)
+#' wildcard(numbers, wildcard = 4, values = 7)
 wildcard = function(df, rules = NULL, wildcard = NULL, values = NULL, 
   expand = TRUE){
   stopifnot(is.logical(expand))
