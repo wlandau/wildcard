@@ -39,7 +39,7 @@ wildcard = function(df, rules = NULL, wildcard = NULL, values = NULL,
   matching = df[matches,]
   if(expand) matching = expandrows(matching, n = length(values))
   true_cols = setdiff(colnames(matching), c(major, minor))
-  matching[,true_cols] = lapply(matching[,true_cols], gsub_multiple, pattern = wildcard, 
+  matching[, true_cols] = lapply(matching[, true_cols, drop = FALSE], gsub_multiple, pattern = wildcard, 
     replacement = values) %>% as.data.frame(stringsAsFactors = FALSE)
   rownames(df) = rownames(matching) = NULL
   matching[[minor]] = seq_len(nrow(matching))

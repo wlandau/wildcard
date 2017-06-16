@@ -2,6 +2,15 @@
 
 context("wildcard")
 
+test_that("single-column data.frames work", {
+  df = data.frame(x = "AB")
+  out = wildcard(df, rules = list(A = head(letters, 3), B = tail(letters, 3)))
+  truth = data.frame(
+    x = c("ax", "ay", "az", "bx", "by", "bz", "cx", "cy", "cz"),
+    stringsAsFactors = FALSE)
+  expect_equal(out, truth)
+})
+
 test_that("expanded df works", {
   df = data.frame(x = c(1, 2, "x", "x", 3), y = c("a", "b", "c", "x_y", "x_x"), stringsAsFactors = TRUE)
   out = wildcard(df, wildcard = "x", values = c(1111, 2222), expand = TRUE)
