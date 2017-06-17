@@ -6,9 +6,31 @@
 
 The wildcard package is a templating mechanism for data frames in R. Wildcards are placeholders for text, and you can evaluate them to generate new data frames from templates. 
 
+```r
+library(wildcard)
+myths <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
+                    claim = c("various", "day", "day"), 
+                    note = c("various", "pictures", "reported day"))
+myths
+
+##                myth   claim         note
+## 1           Bigfoot various      various
+## 2               UFO     day     pictures
+## 3 Loch Ness Monster     day reported day
+
+wildcard(myths, wildcard = "day", values = c("today", "yesterday"))
+
+##                myth     claim               note
+## 1           Bigfoot   various            various
+## 2               UFO     today           pictures
+## 3               UFO yesterday           pictures
+## 4 Loch Ness Monster     today     reported today
+## 5 Loch Ness Monster yesterday reported yesterday
+```
+
 # Installation
 
-First, ensure that [R](https://www.r-project.org/) is installed, as well as the dependencies in the [`DESCRIPTION`](https://github.com/wlandau/wildcard/blob/master/DESCRIPTION). To install the [latest CRAN release](https://CRAN.R-project.org/package=wildcard), run
+First, ensure that [R](https://www.r-project.org/) is installed. To install the [latest CRAN release](https://CRAN.R-project.org/package=wildcard), run
 
 ```r
 install.packages("wildcard")
@@ -23,7 +45,7 @@ devtools::install_github("wlandau/wildcard", build = TRUE)
 If you specify a tag, you can install a GitHub release.
 
 ```r
-devtools::install_github("wlandau/wildcard@v1.0.0", build = TRUE)
+devtools::install_github("wlandau/wildcard@v1.0.1", build = TRUE)
 ```
 
 # Tutorial
@@ -41,7 +63,7 @@ You can submit questions, bug reports, and feature requests to the [issue tracke
 
 # Usage
 
-The functionality is straightforward.
+Try out the following or see the [CRAN vignette](https://cran.r-project.org/web/packages/wildcard/vignettes/wildcard.html) for the output.
 
 ## `wildcard()`
 
