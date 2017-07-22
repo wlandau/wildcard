@@ -2,6 +2,8 @@
 [![codecov.io](https://codecov.io/github/wlandau/wildcard/coverage.svg?branch=master)](https://codecov.io/github/wlandau/wildcard?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/wildcard)](http://cran.r-project.org/package=wildcard)
 
+![](vignettes/logo.png)
+
 # wildcard
 
 The wildcard package is a templating mechanism for data frames in R. Wildcards are placeholders for text, and you can evaluate them to generate new data frames from templates. 
