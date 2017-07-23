@@ -1,4 +1,4 @@
-![](vignettes/logo.png)
+![](raster/logo-readme.png)
 
 [![Travis-CI Build Status](https://travis-ci.org/wlandau/wildcard.svg?branch=master)](https://travis-ci.org/wlandau/wildcard)
 [![codecov.io](https://codecov.io/github/wlandau/wildcard/coverage.svg?branch=master)](https://codecov.io/github/wlandau/wildcard?branch=master)

@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-![](logo.png)
+![](logo-vignette.png)
 
 The wildcard package is a templating mechanism for data frames. Wildcards are placeholders for text, and you can evaluate them to generate new data frames from templates. The functionality is straightforward.
 
