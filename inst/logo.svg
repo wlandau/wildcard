@@ -44,7 +44,7 @@
      id="namedview4"
      showgrid="false"
      inkscape:zoom="0.32"
-     inkscape:cx="1159.8102"
+     inkscape:cx="689.4977"
      inkscape:cy="1394.0877"
      inkscape:window-x="0"
      inkscape:window-y="24"
@@ -469,15 +469,15 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:133.33332825px;line-height:18;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-     x="766.42798"
-     y="3284.811"
+     x="303.67758"
+     y="3308.3926"
      id="text4534-3"
-     transform="rotate(-29.393941)"><tspan
+     transform="rotate(-31.280495)"><tspan
        sodipodi:role="line"
        id="tspan4532-6"
-       x="766.42798"
-       y="3284.811"
-       style="fill:#ffffff;fill-opacity:1">rstats</tspan></text>
+       x="303.67758"
+       y="3308.3926"
+       style="fill:#ffffff;fill-opacity:1">R language</tspan></text>
   <circle
      style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.6557585;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path4635"
