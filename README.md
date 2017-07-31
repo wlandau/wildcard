@@ -1,4 +1,6 @@
-![](raster/logo-readme.png)
+<h1 align="center">
+  <img width="200" src="./raster/logo.png" alt="">
+</h1>
 
 [![Travis-CI Build Status](https://travis-ci.org/wlandau/wildcard.svg?branch=master)](https://travis-ci.org/wlandau/wildcard)
 [![codecov.io](https://codecov.io/github/wlandau/wildcard/coverage.svg?branch=master)](https://codecov.io/github/wlandau/wildcard?branch=master)
