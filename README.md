@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img width="200" src="./raster/logo.png" alt="">
+  <img src="./raster/logo-readme.png" alt="">
 </h1>
 
 [![Travis-CI Build Status](https://travis-ci.org/wlandau/wildcard.svg?branch=master)](https://travis-ci.org/wlandau/wildcard)
