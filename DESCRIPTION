@@ -1,7 +1,7 @@
 Package: wildcard
 Title: Templates for Data Frames
-Version: 1.0.3
-Date: 2017-08-22
+Version: 1.0.4
+Date: 2017-08-23
 Authors@R: person(
   given = c("William", "Michael"),
   family = "Landau",  

@@ -73,11 +73,10 @@ wildcard(df, rules = rules)
 ## 6 C C
 ## 7 c A
 ## 8 c B
-##  c C
+##   c C
 ## Warning message:
 ## In check_rules(rules) :
 ##   In `rules`, some wildcards are also replacement values.
 ## The returned data frame may be different than you expect,
 ## and it may depend on the order of the wildcards in `rules`.
 ```
-
