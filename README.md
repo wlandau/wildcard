@@ -75,13 +75,18 @@ Try out the following or see the [CRAN vignette](https://cran.r-project.org/web/
 
 ```r
 library(wildcard)
-myths <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
-                    claim = c("various", "day", "day"), 
-                    note = c("various", "pictures", "reported day"))
+myths <- data.frame(
+  myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
+  claim = c("various", "day", "day"), 
+  note = c("various", "pictures", "reported day"))
 wildcard(myths, wildcard = "day", values = c("today", "yesterday"))
 wildcard(myths, wildcard = "day", values = c("today", "yesterday"), expand = FALSE)
-locations <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), origin = "where")
-rules <- list(where = c("North America", "various", "Scotland"), UFO = c("spaceship", "saucer"))
+locations <- data.frame(
+  myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
+  origin = "where")
+rules <- list(
+  where = c("North America", "various", "Scotland"), 
+  UFO = c("spaceship", "saucer"))
 wildcard(locations, rules = rules, expand = c(FALSE, TRUE))
 numbers <- data.frame(x = 4, y = 3, z = 4444, w = 4.434)
 wildcard(numbers, wildcard = 4, values = 7)
@@ -90,8 +95,9 @@ wildcard(numbers, wildcard = 4, values = 7)
 ## `expandrows()`
 
 ```r
-df <- data.frame(ID = c("24601", "Javert", "Fantine"), 
-                 fate = c("fulfillment", "confusion", "misfortune"))
+df <- data.frame(
+  ID = c("24601", "Javert", "Fantine"), 
+  fate = c("fulfillment", "confusion", "misfortune"))
 expandrows(df, n = 2, type = "each")
 expandrows(df, n = 2, type = "times")
 ```
@@ -104,4 +110,30 @@ str(iris)
 out <- nofactors(iris)
 class(out$Species)
 str(out)
+```
+
+# A cautionary note
+
+Be sure that wildcards and are not also replacement values.
+
+```r
+df <- data.frame(x = "a", y = "b")
+rules <- list(a = letters[1:3], b = LETTERS[1:3])
+wildcard(df, rules = rules)
+
+##   x y
+## 1 a A
+## 2 a B
+## 3 a C
+## 4 A A
+## 5 B B
+## 6 C C
+## 7 c A
+## 8 c B
+##  c C
+## Warning message:
+## In check_rules(rules) :
+##   In `rules`, some wildcards are also replacement values.
+## The returned data frame may be different than you expect,
+## and it may depend on the order of the wildcards in `rules`.
 ```

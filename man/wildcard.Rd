@@ -26,17 +26,31 @@ argument.}
 \description{
 Main function of the package. Evaluate a wildcard
 to fill in or expand a data frame.
-Copied and modified from \code{drake::evaluate()} package under GPL-3.
+Copied and modified from \code{remakeGenerator::evaluate()} package under GPL-3:
+\url{https://github.com/wlandau/remakeGenerator}
 }
 \examples{
-myths <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
-                    claim = c("various", "day", "day"), 
-                    note = c("various", "pictures", "reported day"))
-wildcard(myths, wildcard = "day", values = c("today", "yesterday"))
-wildcard(myths, wildcard = "day", values = c("today", "yesterday"), expand = FALSE)
-locations <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), origin = "where")
-rules <- list(where = c("North America", "various", "Scotland"), UFO = c("spaceship", "saucer"))
+myths <- data.frame(
+  myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'), 
+  claim = c('various', 'day', 'day'), 
+ note = c('various', 'pictures', 'reported day'))
+wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'))
+wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'), expand = FALSE)
+locations <- data.frame(
+  myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'),
+  origin = 'where')
+rules <- list(
+  where = c('North America', 'various', 'Scotland'),
+  UFO = c('spaceship', 'saucer'))
 wildcard(locations, rules = rules, expand = c(FALSE, TRUE))
 numbers <- data.frame(x = 4, y = 3, z = 4444, w = 4.434)
 wildcard(numbers, wildcard = 4, values = 7)
+# Wildcards should not also be replacement values.
+# Otherwise, the output will be strange
+# and will depend on the order of the wildcards.
+\dontrun{
+df <- data.frame(x = "a", y = "b")
+rules <- list(a = letters[1:3], b = LETTERS[1:3])
+wildcard(df, rules = rules)
+}
 }
