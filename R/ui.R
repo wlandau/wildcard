@@ -15,6 +15,20 @@
 #' when the values are substituted in place of wildcards.
 #' Can be a vector of length \code{length(rules)}
 #' if using the \code{rules} argument.
+#' @param include character vector of columns of \code{df}
+#' to be included in the wildcard evaluation.
+#' The values/rules will replace the wildcards in these columns.
+#' All columns are included by default.
+#' You may use \code{include} or \code{exclude} (or neither),
+#' but not both.
+#' @param exclude character vector of columsn of \code{df}
+#' to be EXCLUDED from the wildcard evaluation.
+#' The lengths of these columns may change as wildcards
+#' are evaluated elsewhere, but no wildcards are replaced
+#' by their values in these columns.
+#' By default, no columns are excluded.
+#' You may use \code{include} or \code{exclude} (or neither),
+#' but not both.
 #' @examples
 #' myths <- data.frame(
 #'   myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'),
@@ -32,6 +46,21 @@
 #' wildcard(locations, rules = rules, expand = c(FALSE, TRUE))
 #' numbers <- data.frame(x = 4, y = 3, z = 4444, w = 4.434)
 #' wildcard(numbers, wildcard = 4, values = 7)
+#' # Inclusion and exclusion
+#' template <- data.frame(
+#'   w = "___",
+#'   x = "__",
+#'   y = "__",
+#'   z = "nothing"
+#' )
+#' wildcard(
+#'   template, wildcard = "_",
+#'   values = LETTERS[1:2], include = c("w", "x")
+#' )
+#' wildcard(
+#'   template, wildcard = "_",
+#'   values = LETTERS[1:2], exclude = c("w", "x")
+#' )
 #' # Wildcards should not also be replacement values.
 #' # Otherwise, the output will be strange
 #' # and will depend on the order of the wildcards.
@@ -41,14 +70,20 @@
 #' wildcard(df, rules = rules)
 #' }
 wildcard <- function(df, rules = NULL, wildcard = NULL,
-  values = NULL, expand = TRUE) {
+  values = NULL, expand = TRUE, include = NULL, exclude = NULL) {
+  df <- as.data.frame(df)
+  check_df(df)
+  include <- process_include(df = df, include = include, exclude = exclude)
+  exclude <- NULL
   stopifnot(is.logical(expand))
   if (!is.null(rules))
-    return(wildcards(df = df, rules = rules, expand = expand))
+    return(wildcards(df = df, rules = rules, expand = expand,
+      include = include, exclude = exclude))
   df <- nofactors(df)
   if (is.null(wildcard) | is.null(values))
     return(df)
-  matches <- get_matches(df, wildcard)
+  matches <- get_matches(df = df, wildcard = wildcard,
+    include = include)
   if (!any(matches))
     return(df)
   major <- unique_random_string(colnames(df))
@@ -57,10 +92,13 @@ wildcard <- function(df, rules = NULL, wildcard = NULL,
   matching <- df[matches, ]
   if (expand)
     matching <- expandrows(matching, n = length(values))
-  true_cols <- setdiff(colnames(matching), c(major, minor))
-  matching[, true_cols] <- lapply(matching[, true_cols,
-    drop = FALSE], gsub_multiple, pattern = wildcard,
-    replacement = values) %>% as.data.frame(stringsAsFactors = FALSE)
+  true_cols <- setdiff(colnames(matching), c(major, minor)) %>%
+    intersect(y = include)
+  if (length(true_cols)){
+    matching[, true_cols] <- lapply(matching[, true_cols,
+      drop = FALSE], gsub_multiple, pattern = wildcard,
+      replacement = values) %>% as.data.frame(stringsAsFactors = FALSE)
+  }
   rownames(df) <- rownames(matching) <- NULL
   matching[[minor]] <- seq_len(nrow(matching))
   out <- rbind(matching, df[!matches, ])

@@ -1,5 +1,15 @@
 context("edge cases")
 
+test_that("df is empty", {
+  df <- data.frame(
+    x = character(0),
+    y = character(0),
+    stringsAsFactors = TRUE)
+  expect_error(out <- wildcard(df,
+    wildcard = "not_found",
+    values = c(1111, 2222)))
+})
+
 test_that("null cases", {
   df <- data.frame(
     x = c(1, 2, "x", "x", 3),
@@ -20,6 +30,23 @@ test_that("null cases", {
     expand = FALSE)
   expect_equal(nofactors(df), out)
   expect_error(wildcard(df, rules = c(a = 1), expand = FALSE))
+})
+
+test_that("df is a matrix", {
+  myths <- data.frame(
+    myth = c("Bigfoot", "UFO", "Loch Ness Monster"),
+    claim = c("various", "day", "day"),
+    note = c("various", "pictures", "reported day"))
+  myths <- as.matrix(myths)
+  out <- wildcard(myths, wildcard = "day",
+                  values = c("today", "yesterday"))
+  ans <- data.frame(
+    myth = c("Bigfoot", "UFO", "UFO", "Loch Ness Monster", "Loch Ness Monster"),
+    claim = c("various", "today", "yesterday", "today", "yesterday"),
+    note = c("various", rep("pictures", 2),
+             "reported today", "reported yesterday"),
+    stringsAsFactors = FALSE)
+  expect_equal(out, ans)
 })
 
 test_that("expanded df works with blank col", {

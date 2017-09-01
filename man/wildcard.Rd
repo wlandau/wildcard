@@ -5,7 +5,7 @@
 \title{Function \code{wildcard}}
 \usage{
 wildcard(df, rules = NULL, wildcard = NULL, values = NULL,
-  expand = TRUE)
+  expand = TRUE, include = NULL, exclude = NULL)
 }
 \arguments{
 \item{df}{data frame}
@@ -23,6 +23,22 @@ If \code{FALSE}, no new rows will be added to \code{df}
 when the values are substituted in place of wildcards.
 Can be a vector of length \code{length(rules)}
 if using the \code{rules} argument.}
+
+\item{include}{character vector of columns of \code{df}
+to be included in the wildcard evaluation.
+The values/rules will replace the wildcards in these columns.
+All columns are included by default.
+You may use \code{include} or \code{exclude} (or neither),
+but not both.}
+
+\item{exclude}{character vector of columsn of \code{df}
+to be EXCLUDED from the wildcard evaluation.
+The lengths of these columns may change as wildcards
+are evaluated elsewhere, but no wildcards are replaced
+by their values in these columns.
+By default, no columns are excluded.
+You may use \code{include} or \code{exclude} (or neither),
+but not both.}
 }
 \description{
 Main function of the package. Evaluate a wildcard
@@ -47,6 +63,21 @@ rules <- list(
 wildcard(locations, rules = rules, expand = c(FALSE, TRUE))
 numbers <- data.frame(x = 4, y = 3, z = 4444, w = 4.434)
 wildcard(numbers, wildcard = 4, values = 7)
+# Inclusion and exclusion
+template <- data.frame(
+  w = "___",
+  x = "__",
+  y = "__",
+  z = "nothing"
+)
+wildcard(
+  template, wildcard = "_",
+  values = LETTERS[1:2], include = c("w", "x")
+)
+wildcard(
+  template, wildcard = "_",
+  values = LETTERS[1:2], exclude = c("w", "x")
+)
 # Wildcards should not also be replacement values.
 # Otherwise, the output will be strange
 # and will depend on the order of the wildcards.
