@@ -11,8 +11,9 @@ expandrows(df, n = 2, type = c("each", "times"))
 
 \item{n}{number of duplicates per row}
 
-\item{type}{character scalar. If \code{'each'}, rows will be duplicated in place.
-If \code{'times'}, the data frame itself will be repeated \code{n} times}
+\item{type}{character scalar. If \code{'each'},
+rows will be duplicated in place.
+If \code{'times'}, the data frame itself will be repeated \code{n} times.}
 }
 \description{
 Expand the rows of a data frame
@@ -21,7 +22,7 @@ Copied and modified from \code{remakeGenerator::expand()} under GPL>=3:
 }
 \examples{
 df <- data.frame(
-  ID = c('24601', 'Javert', 'Fantine'), 
+  ID = c('24601', 'Javert', 'Fantine'),
   fate = c('fulfillment', 'confusion', 'misfortune'))
 expandrows(df, n = 2, type = 'each')
 expandrows(df, n = 2, type = 'times')

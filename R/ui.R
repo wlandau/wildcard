@@ -1,26 +1,28 @@
 #' @title Function \code{wildcard}
 #' @description Main function of the package. Evaluate a wildcard
 #' to fill in or expand a data frame.
-#' Copied and modified from \code{remakeGenerator::evaluate()} package under GPL-3:
+#' Copied and modified from \code{remakeGenerator::evaluate()} under GPL-3:
 #' \url{https://github.com/wlandau/remakeGenerator}
 #' @export
-#' @param df data frame 
+#' @param df data frame
 #' @param rules list with names a wildcards and elements as vectors of values
 #' to substitute in place of the wildcards.
 #' @param wildcard character scalar, a wildcard found in a data frame
 #' @param values vector of values to substitute in place of a wildcard
-#' @param expand logical, whether to expand the rows of the data frame to substitute
-#' each value for each wildcard in turn. If \code{FALSE}, no new rows
-#' will be added to \code{df} when the values are substituted in place
-#' of wildcards. Can be a vector of length \code{length(rules)} if using the \code{rules}
-#' argument.
-#' @examples 
+#' @param expand logical, whether to expand the rows of the data frame to
+#' substitute each value for each wildcard in turn.
+#' If \code{FALSE}, no new rows will be added to \code{df}
+#' when the values are substituted in place of wildcards.
+#' Can be a vector of length \code{length(rules)}
+#' if using the \code{rules} argument.
+#' @examples
 #' myths <- data.frame(
-#'   myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'), 
-#'   claim = c('various', 'day', 'day'), 
+#'   myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'),
+#'   claim = c('various', 'day', 'day'),
 #'  note = c('various', 'pictures', 'reported day'))
 #' wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'))
-#' wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'), expand = FALSE)
+#' wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'),
+#'   expand = FALSE)
 #' locations <- data.frame(
 #'   myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'),
 #'   origin = 'where')
@@ -76,11 +78,12 @@ wildcard <- function(df, rules = NULL, wildcard = NULL,
 #' @seealso \code{\link{wildcard}}]
 #' @param df data frame
 #' @param n number of duplicates per row
-#' @param type character scalar. If \code{'each'}, rows will be duplicated in place.
-#' If \code{'times'}, the data frame itself will be repeated \code{n} times
+#' @param type character scalar. If \code{'each'},
+#' rows will be duplicated in place.
+#' If \code{'times'}, the data frame itself will be repeated \code{n} times.
 #' @examples
 #' df <- data.frame(
-#'   ID = c('24601', 'Javert', 'Fantine'), 
+#'   ID = c('24601', 'Javert', 'Fantine'),
 #'   fate = c('fulfillment', 'confusion', 'misfortune'))
 #' expandrows(df, n = 2, type = 'each')
 #' expandrows(df, n = 2, type = 'times')

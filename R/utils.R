@@ -17,7 +17,9 @@ wildcards <- function(df, rules = NULL, expand = TRUE) {
 
 check_rules <- function(rules){
   wildcards <- names(rules)
-  values <- unlist(rules) %>% unique %>% unname
+  values <- unlist(rules) %>%
+    unique %>%
+    unname
   if (length(intersect(wildcards, values)))
     warning(
       "In `rules`, some wildcards are also replacement values.\n",
@@ -54,7 +56,7 @@ matches_col <- function(x, wildcard) {
 }
 
 unique_random_string <- function(exclude = NULL, n = 30) {
-  while ( (out <- stri_rand_strings(1, n)) %in% exclude)
+  while ((out <- stri_rand_strings(1, n)) %in% exclude) # nolint
     next
   out
 }

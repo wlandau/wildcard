@@ -17,25 +17,27 @@ to substitute in place of the wildcards.}
 
 \item{values}{vector of values to substitute in place of a wildcard}
 
-\item{expand}{logical, whether to expand the rows of the data frame to substitute
-each value for each wildcard in turn. If \code{FALSE}, no new rows
-will be added to \code{df} when the values are substituted in place
-of wildcards. Can be a vector of length \code{length(rules)} if using the \code{rules}
-argument.}
+\item{expand}{logical, whether to expand the rows of the data frame to
+substitute each value for each wildcard in turn.
+If \code{FALSE}, no new rows will be added to \code{df}
+when the values are substituted in place of wildcards.
+Can be a vector of length \code{length(rules)}
+if using the \code{rules} argument.}
 }
 \description{
 Main function of the package. Evaluate a wildcard
 to fill in or expand a data frame.
-Copied and modified from \code{remakeGenerator::evaluate()} package under GPL-3:
+Copied and modified from \code{remakeGenerator::evaluate()} under GPL-3:
 \url{https://github.com/wlandau/remakeGenerator}
 }
 \examples{
 myths <- data.frame(
-  myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'), 
-  claim = c('various', 'day', 'day'), 
+  myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'),
+  claim = c('various', 'day', 'day'),
  note = c('various', 'pictures', 'reported day'))
 wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'))
-wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'), expand = FALSE)
+wildcard(myths, wildcard = 'day', values = c('today', 'yesterday'),
+  expand = FALSE)
 locations <- data.frame(
   myth = c('Bigfoot', 'UFO', 'Loch Ness Monster'),
   origin = 'where')
