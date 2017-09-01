@@ -80,7 +80,12 @@ myths <- data.frame(
   claim = c("various", "day", "day"), 
   note = c("various", "pictures", "reported day"))
 wildcard(myths, wildcard = "day", values = c("today", "yesterday"))
-wildcard(myths, wildcard = "day", values = c("today", "yesterday"), expand = FALSE)
+wildcard(myths, wildcard = "day", values = c("today", "yesterday"),
+  expand = FALSE)
+wildcard(myths, wildcard = "day", values = c("today", "yesterday"),
+  include = "claim")
+wildcard(myths, wildcard = "day", values = c("today", "yesterday"),
+  exclude = c("claim", "note"))
 locations <- data.frame(
   myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
   origin = "where")

@@ -64,20 +64,10 @@ wildcard(locations, rules = rules, expand = c(FALSE, TRUE))
 numbers <- data.frame(x = 4, y = 3, z = 4444, w = 4.434)
 wildcard(numbers, wildcard = 4, values = 7)
 # Inclusion and exclusion
-template <- data.frame(
-  w = "___",
-  x = "__",
-  y = "__",
-  z = "nothing"
-)
-wildcard(
-  template, wildcard = "_",
-  values = LETTERS[1:2], include = c("w", "x")
-)
-wildcard(
-  template, wildcard = "_",
-  values = LETTERS[1:2], exclude = c("w", "x")
-)
+wildcard(myths, wildcard = "day", values = c("today", "yesterday"),
+  include = "claim")
+wildcard(myths, wildcard = "day", values = c("today", "yesterday"),
+  exclude = c("claim", "note"))
 # Wildcards should not also be replacement values.
 # Otherwise, the output will be strange
 # and will depend on the order of the wildcards.
