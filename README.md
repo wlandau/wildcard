@@ -14,9 +14,10 @@ The wildcard package is a templating mechanism for data frames in R. Wildcards a
 
 ```r
 library(wildcard)
-myths <- data.frame(myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
-                    claim = c("various", "day", "day"), 
-                    note = c("various", "pictures", "reported day"))
+myths <- data.frame(
+  myth = c("Bigfoot", "UFO", "Loch Ness Monster"), 
+  claim = c("various", "day", "day"), 
+  note = c("various", "pictures", "reported day"))
 myths
 
 ##                myth   claim         note
