@@ -17,16 +17,18 @@
 #' if using the \code{rules} argument.
 #' @param include character vector of columns of \code{df}
 #' to be included in the wildcard evaluation.
-#' The values/rules will replace the wildcards in these columns.
+#' The values will replace the wildcards in these columns
+#' but not in any of the other colums.
 #' All columns are included by default.
 #' You may use \code{include} or \code{exclude} (or neither),
 #' but not both.
-#' @param exclude character vector of columsn of \code{df}
+#' @param exclude character vector of columns of \code{df}
 #' to be EXCLUDED from the wildcard evaluation.
-#' The lengths of these columns may change as wildcards
-#' are evaluated elsewhere, but no wildcards are replaced
-#' by their values in these columns.
-#' By default, no columns are excluded.
+#' The values will NOT replace the wildcards in any of these
+#' columns, but wildcard evaluation will occur in all
+#' the other columns.
+#' By default, no columns are excluded (all columns
+#' are used for wildcard evaluation).
 #' You may use \code{include} or \code{exclude} (or neither),
 #' but not both.
 #' @examples
